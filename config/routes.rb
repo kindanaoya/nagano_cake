@@ -1,5 +1,36 @@
 Rails.application.routes.draw do
-  devise_for :admins
-  devise_for :customers
+
+  namespace :admin do
+    get 'order_details/update'
+  end
+  namespace :admin do
+    get 'orders/show'
+    get 'orders/update'
+  end
+  namespace :admin do
+    get 'customers/index'
+    get 'customers/show'
+    get 'customers/edit'
+    get 'customers/update'
+  end
+  namespace :admin do
+    get 'homes/top'
+  end
+  namespace :admin do
+    get 'items/index'
+    get 'items/new'
+    get 'items/create'
+    get 'items/show'
+    get 'items/edit'
+    get 'items/update'
+  end
+  devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+}
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
