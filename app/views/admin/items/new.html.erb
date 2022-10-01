@@ -5,15 +5,12 @@
 
 <div class="row">
   <div class="item-form">
-    <%= form_for([:admin, @item]) do |f| %>
+    <%= form_with model: @item, url: new_admin_item_path do |f| %>
 
       <div class="col-xs-5">
         <div class="field">
-
-          <%= f.label :image do%>
-          <%= attachment_image_tag(@item, :image,id: "preview", size: '400x300', fallback: "no_image.jpg") %>
-          <% end %>
-          <%= f.attachment_field :image, id: :item_img %>
+          <%= f.label :image, "商品画像", style: "width: 110px;" %>
+          <%= f.file_field :image, class: "form-control-file user_image" %>
 
         </div>
       </div>
@@ -29,24 +26,23 @@
           <%= f.text_area :introduction, class: "form-control", rows: 7, style: "width: 300px;" %>
         </div>
 
-        <div class="field">
-          <%= f.label :genre_id, "ジャンル", style: "width: 110px;" %>
-          <%= f.collection_select :genre_id, Genre.where(status: "true"), :id, :name, include_blank: "選択してください" %>
-        </div>
+
 
         <div class="field">
           <%= f.label :price, "税抜価格", style: "width: 110px;" %>
           <%= f.text_field :price, class: "form-control", style: "width: 300px;" %>
         </div>
 
-        <div class="field">
-          <%= f.label :status, "販売ステータス", style: "width: 110px;" %>
-          <%= f.select :status, [["販売中", true], ["販売停止中", false]] %>
+        <div class= "field">
+          <%= f.label :is_active, "販売ステータス", style: "width: 110px;" %>
+          <%= f.check_box :is_active, [["販売中", true], ["販売停止中", false]] %>
         </div>
 
-        <div class="actions text-right">
+        <div class ="actions">
           <%= f.submit "新規登録", class: "btn-lg btn-primary" %>
         </div>
+
+
       </div>
 
     <% end %>
