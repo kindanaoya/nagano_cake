@@ -24,7 +24,7 @@ class Admin::ItemsController < ApplicationController
 		@item = Item.new(item_params)
     if @item.save
     	flash[:notice] = "新しく商品を追加しました。"
-    	redirect_to admin_item_path(@item)
+    	redirect_to admin_items_path
     else
     	render 'new'
     end
@@ -35,20 +35,10 @@ class Admin::ItemsController < ApplicationController
 		@genre = @item.genre
 		if @item.update(item_params)
 			flash[:notice] = "商品情報を更新しました。"
-			redirect_to admin_item_path(@item)
+			redirect_to admin_items_path(@item)
 		else
 			render 'edit'
 		end
-	end
-
-	def search
-		@i = Item.ransack(params[:q])
-		@items = @i.result.page(params[:page]).reverse_order
-	end
-
-	def item_search
-		@i = Item.ransack(params[:q])
-		@items = @i.result
 	end
 
   private

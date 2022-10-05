@@ -1,50 +1,60 @@
-<div class="row">
-  <h3 class="title">商品新規登録</h3>
-</div>
+<div class = "container">
+  <div class="row">
+    <h3 class="title">商品新規登録</h3>
+  </div>
 
 
-<div class="row">
-  <div class="item-form">
-    <%= form_with model: @item, url: new_admin_item_path do |f| %>
+  <div class="row">
+    <div class="item-form">
+      <%= form_with model: @item, url: new_admin_item_path do |f| %>
 
-      <div class="col-xs-5">
-        <div class="field">
-          <%= f.label :image, "商品画像", style: "width: 110px;" %>
-          <%= f.file_field :image, class: "form-control-file user_image" %>
+        <div class="col-xs-5">
+          <div class="field">
+            <%= f.label :image, "商品画像", style: "width: 110px;" %>
+            <%= f.file_field :image, class: "form-control-file user_image" %>
 
-        </div>
-      </div>
-
-      <div class="col-xs-6">
-        <div class="field">
-          <%= f.label :name, "商品名", style: "width: 110px;" %>
-          <%= f.text_field :name, class: "form-control", style: "width: 300px;" %>
+          </div>
         </div>
 
-        <div class="field label-top">
-          <%= f.label :introduction, "商品説明", style: "width: 110px;" %>
-          <%= f.text_area :introduction, class: "form-control", rows: 7, style: "width: 300px;" %>
+        <div class="col-xs-6">
+          <div class="field">
+            <%= f.label :name, "商品名", style: "width: 110px;" %>
+            <%= f.text_field :name, class: "form-control", style: "width: 300px;" %>
+          </div>
+
+          <div class="field label-top">
+            <%= f.label :introduction, "商品説明", style: "width: 110px;" %>
+            <%= f.text_area :introduction, class: "form-control", rows: 7, style: "width: 300px;" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :genre_id, "ジャンル", style: "wirth: 110px;" %>
+            <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択してください--" %>
+          </div>
+
+
+
+          <div class="field">
+            <%= f.label :price, "税抜価格", style: "width: 110px;" %>
+            <%= f.text_field :price, class: "form-control", style: "width: 300px;" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :is_active, "販売ステータス", style: "width: 110px;" %>
+            <label><%= f.radio_button :is_active, true %>販売中</label>
+            <label><%= f.radio_button :is_active, false %>販売停止中</label>
+          </div>
+
+
+
+          <div class ="actions">
+            <%= f.submit "新規登録", class: "btn-lg btn-primary" %>
+          </div>
+
+
         </div>
 
-
-
-        <div class="field">
-          <%= f.label :price, "税抜価格", style: "width: 110px;" %>
-          <%= f.text_field :price, class: "form-control", style: "width: 300px;" %>
-        </div>
-
-        <div class= "field">
-          <%= f.label :is_active, "販売ステータス", style: "width: 110px;" %>
-          <%= f.check_box :is_active, [["販売中", true], ["販売停止中", false]] %>
-        </div>
-
-        <div class ="actions">
-          <%= f.submit "新規登録", class: "btn-lg btn-primary" %>
-        </div>
-
-
-      </div>
-
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
