@@ -35,7 +35,7 @@ class Admin::ItemsController < ApplicationController
 		@genre = @item.genre
 		if @item.update(item_params)
 			flash[:notice] = "商品情報を更新しました。"
-			redirect_to admin_items_path(@item)
+			redirect_to admin_items_path
 		else
 			render 'edit'
 		end
@@ -44,6 +44,6 @@ class Admin::ItemsController < ApplicationController
   private
 
   def item_params
-    params.reqquire(:item).permit(:genre_id, :name, :introduction, :price, :is_active )
+    params.require(:item).permit(:genre_id, :name, :introduction, :image, :price, :is_active )
   end
 end
