@@ -1,0 +1,21 @@
+<div class="row">
+  <% items.each do |item| %>
+    <div class="col-xs-3">
+      <div class="item-box">
+        <%= link_to home_path(item) do %>
+        <div class="item-image">
+          <% if @item.image.attached? %>
+            <%= image_tag @item.image, size: "200x200" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "200x200" %>
+          <% end %>
+        </div>
+          <div class="item-neme-price">
+            <div class="item-name text-center"><%= item.name %></div>
+            <div class="item-price text-center">¥<%= (item.price * 110 / 100).to_s(:delimited) %>(税込)</div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

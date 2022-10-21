@@ -1,0 +1,26 @@
+<%= form_with model: @address, url: address_path do |f| %>
+  <div class="form-horizontal">
+
+    <div class="form-group">
+      <div class="col-xs-3">
+         <%= f.label :postal_code, "郵便番号", class: "control-label" %>
+       </div>
+          <div class="col-xs-3"><%= f.text_field :postal_code, class: "form-control" %></div>
+    </div>
+
+     <div class="form-group">
+        <div class="col-xs-3">
+          <%= f.label :address, "住所", class: "control-label" %>
+        </div>
+          <div class="col-xs-5"><%= f.text_field :address, class: "form-control" %></div>
+     </div>
+
+    <div class="form-group">
+      <div class="col-xs-3">
+          <%= f.label :name, "宛名", class: "control-label" %>
+      </div>
+        <div class="col-xs-3"><%= f.text_field :name, class: "form-control" %></div>
+          <div class="col-xs-offset-8"><%= f.submit "登録する", class: "btn btn-success " %></div>
+    </div>
+  </div>
+<% end %>

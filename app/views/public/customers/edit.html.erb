@@ -1,2 +1,57 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <%= form_with model: @customer, url: customers_path do |f| %>
+      <div class="form-horizontal">
+        <div class="form-group">
+          <div class="col-xs-3">
+            <%= f.label :last_name, "名前" , class: "control-label" %>
+          </div>
+            <div class="col-xs-3">(姓)<%= f.text_field :last_name,class: "name form-control" %></div>
+            <div class="col-xs-3">(名)<%= f.text_field :first_name, class: "form-control" %></div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-3">
+            <%= f.label :last_name_kana, "フリガナ" , class: "control-label" %>
+          </div>
+            <div class="col-xs-3">(セイ)<%= f.text_field :last_name_kana, class: "form-control" %></div>
+            <div class="col-xs-3">(メイ)<%= f.text_field :first_name_kana, class: "form-control" %></div>
+          </div>
+
+        <div class="form-group">
+          <div class="col-xs-3">
+            <%= f.label :postal_code, "郵便番号", class: "control-label" %>
+          </div>
+            <div class="col-xs-3"><%= f.text_field :postal_code, class: "form-control" %></div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-3">
+            <%= f.label :address, "住所", class: "control-label" %>
+          </div>
+            <div class="col-xs-6"><%= f.text_field :address,class: "form-control" %></div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-3">
+            <%= f.label :telephone_number, "電話番号", class: "control-label" %>
+          </div>
+            <div class="col-xs-3"><%= f.text_field :telephone_number,class: "form-control" %></div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-3">
+            <%= f.label :email, "メールアドレス", class: "control-label" %>
+          </div>
+            <div class="col-xs-3"><%= f.email_field :email, class: "form-control"%></div>
+        </div>
+
+
+        <div class="actions">
+            <%= f.submit "編集内容を保存", class: "btn btn-primary col-xs-offset-3" %>
+           <%= link_to "退会する", customers_confirm_path, class: "small btn btn-danger col-xs-offset-3" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

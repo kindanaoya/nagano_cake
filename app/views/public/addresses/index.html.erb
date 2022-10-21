@@ -1,2 +1,70 @@
-<h1>Public::Addresses#index</h1>
-<p>Find me in app/views/public/addresses/index.html.erb</p>
+<div class="container">
+    <div class="row">
+  	<h3 class="title">配送先登録/一覧</h3>
+  	<%= form_with model: @address, url: addresses_path do |f| %>
+  <div class="form-horizontal">
+
+    <div class="form-group">
+      <div class="col-xs-3">
+         <%= f.label :postal_code, "郵便番号", class: "control-label" %>
+       </div>
+          <div class="col-xs-3"><%= f.text_field :postal_code, class: "form-control" %></div>
+    </div>
+
+     <div class="form-group">
+        <div class="col-xs-3">
+          <%= f.label :address, "住所", class: "control-label" %>
+        </div>
+          <div class="col-xs-5"><%= f.text_field :address, class: "form-control" %></div>
+     </div>
+
+    <div class="form-group">
+      <div class="col-xs-3">
+          <%= f.label :name, "宛名", class: "control-label" %>
+      </div>
+        <div class="col-xs-3"><%= f.text_field :name, class: "form-control" %></div>
+          <div class="col-xs-offset-8"><%= f.submit "登録する", class: "btn btn-success " %></div>
+    </div>
+  </div>
+<% end %>
+
+  
+  </div>
+
+  <div class="row">
+  	<div class="col-xs-9">
+  		<% if @addresses.count != 0 %>
+
+  			<table class="table" style="margin-top: 50px;">
+  				<thead>
+  					<tr>
+  						<th>郵便番号</th>
+  						<th>住所</th>
+  						<th>宛名</th>
+  						<th></th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					<% @addresses.each do |address|%>
+  						<tr>
+  							<td><%= address.postal_code %></td>
+  							<td><%= address.address %></td>
+  							<td><%= address.name %></td>
+  							<td><%= link_to "編集する", edit_address_path(@customer), class: "button btn btn-primary" %>
+  							    <%= link_to "削除する", address_path(@customer), method: :delete, "data-confirm" => "本当に削除しますか？", class: "button btn btn-danger" %>
+  							</td>
+  						</tr>
+  					<% end %>
+  				</tbody>
+  			</table>
+
+  		<% else %>
+
+  			<p style="margin-top: 100px;">
+  				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>配送先は登録されていません。
+  			</p>
+
+  		<% end %>
+  	</div>
+  </div>
+</div>
